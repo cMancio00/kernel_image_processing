@@ -7,6 +7,11 @@
 #include "stb_image.h"
 #endif // STB_IMAGE_IMPLEMENTATION
 
+#ifndef STB_IMAGE_WRITE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
+#endif // STB_IMAGE_WRITE_IMPLEMENTATION
+
 using namespace std;
 
 void Image::loadImage(const std::string &image_path, Image &image) {
@@ -20,7 +25,9 @@ void Image::loadImage(const std::string &image_path, Image &image) {
 }
 
 void Image::saveImage(const std::string &output_path, Image image) {
-
+    stbi_write_jpg(output_path.c_str(), image.width, image.height, image.channels,
+                   image.rgb_image, 90);
+    stbi_image_free(image.rgb_image);
 }
 
 void Image::resizeImage(int new_width, int new_height, Image &image) {

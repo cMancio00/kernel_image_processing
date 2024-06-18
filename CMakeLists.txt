@@ -7,4 +7,5 @@ include_directories(${INCLUDE_DIR})
 
 add_executable(kernel_image_processing main.cpp
         Image.h
-        Image.cpp)
+        Image.cpp
+        )

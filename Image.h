@@ -10,7 +10,7 @@ struct Image{
 
     static void loadImage(const std::string &image_path, Image &image);
     void resizeImage(int new_width, int new_height, Image &image);
-    void saveImage(const std::string &output_path, Image image);
+    static void saveImage(const std::string &output_path, Image image);
 };
 
 #endif //KERNEL_IMAGE_PROCESSING_IMAGE_H
