@@ -3,17 +3,18 @@
 #include "Image.h"
 
 using namespace std;
-const char *IMAGE_PATH = "../images/input/4K.jpg";
+const char *INPUT_PATH = "../images/input/4K.jpg";
+const char *OUTPUT_PATH = "../images/output/4K.jpg";
 
 int main() {
     Image image;
     cout << "Reading an Image..." << endl;
-    Image::loadImage(IMAGE_PATH,image);
-    if(!image.rgb_image){
-        cerr << "LOAD FAILED!" << endl;
-    }else{
-        cout << format("Loaded image {}x{}",image.width,image.height) << endl;
-    }
+    Image::loadImage(INPUT_PATH,image);
+
+    cout << "Saving image..." << endl;
+    Image::saveImage(OUTPUT_PATH, image);
+
+
 
     return EXIT_SUCCESS;
 }
