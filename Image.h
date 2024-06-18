@@ -9,7 +9,7 @@ struct Image{
     uint8_t *rgb_image{nullptr};
 
     static void loadImage(const std::string &image_path, Image &image);
-    void resizeImage(int new_width, int new_height, Image &image);
+    static Image resizeImage(const Image &image, int new_width, int new_height);
     static void saveImage(const std::string &output_path, Image image);
 };
 

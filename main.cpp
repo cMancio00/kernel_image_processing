@@ -11,8 +11,10 @@ int main() {
     cout << "Reading an Image..." << endl;
     Image::loadImage(INPUT_PATH,image);
 
+    Image resized = Image::resizeImage(image,5000,2160);
+
     cout << "Saving image..." << endl;
-    Image::saveImage(OUTPUT_PATH, image);
+    Image::saveImage(OUTPUT_PATH, resized);
 
 
 
