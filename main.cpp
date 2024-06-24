@@ -2,6 +2,7 @@
 #include <format>
 #include "Image.h"
 #include "kernel.h"
+#include "convolution.h"
 
 using namespace std;
 const char *INPUT_PATH = "../images/input/4K.jpg";
@@ -13,10 +14,10 @@ int main() {
     cout << "Reading an Image..." << endl;
     Image::loadImage(INPUT_PATH,image);
 
-    Image resized = Image::resizeImage(image,5000,2160);
+    Image blur = convolve(image,Kernel::BoxBlur());
 
     cout << "Saving image..." << endl;
-    Image::saveImage(OUTPUT_PATH, resized);
+    Image::saveImage(OUTPUT_PATH, blur);
 
     return EXIT_SUCCESS;
 }

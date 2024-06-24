@@ -9,4 +9,7 @@ add_executable(kernel_image_processing main.cpp
         Image.h
         Image.cpp
         kernel.h
+        convolution.h
+        convolution.cpp
+        kernel.cpp
 )
