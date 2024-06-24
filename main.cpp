@@ -14,10 +14,13 @@ int main() {
     cout << "Reading an Image..." << endl;
     Image::loadImage(INPUT_PATH,image);
 
-    Image blur = convolve(image,Kernel::BoxBlur());
+    Image convolved = convolve(image,Kernel::Sharpen());
 
     cout << "Saving image..." << endl;
-    Image::saveImage(OUTPUT_PATH, blur);
+    Image::saveImage(OUTPUT_PATH, convolved);
+    cout << "Done"<<endl;
+
+
 
     return EXIT_SUCCESS;
 }

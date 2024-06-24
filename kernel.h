@@ -5,7 +5,7 @@
 
 struct Kernel{
     unsigned short dimension{3};
-    float normalizing_constant{1};
+    float normalizing_constant{1.0f};
     short data[3][3] = {
             {0, 0, 0},
             {0, 1, 0},
@@ -15,6 +15,7 @@ struct Kernel{
     static Kernel Sharpen();
     static Kernel BoxBlur();
     static Kernel GaussianBlur();
+    static Kernel Identity();
 };
 
 

@@ -7,24 +7,28 @@ Image convolve(const Image &image, const Kernel &kernel) {
     convolved.channels = image.channels;
     convolved.rgb_image = new uint8_t[convolved.width * convolved.height * convolved.channels];
 
-    for(int width = 0; width < convolved.width; ++width){
-        for(int height = 0; height < convolved.height; ++height){
-            for(int channel = 0; channel < convolved.channels; ++channel){
+    for (int image_width = 0; image_width < convolved.width; ++image_width) {
+        for (int image_height = 0; image_height < convolved.height; ++image_height) {
+            for (int channels = 0; channels < convolved.channels; ++channels) {
                 float sum = 0.0f;
-                for(int kernelWidth = 0; kernelWidth < kernel.dimension; ++kernelWidth){
-                    for(int kernelHeight = 0; kernelHeight < kernel.dimension; ++kernelHeight){
-                        int pixelWidth = width + kernelWidth - kernel.dimension / 2;
-                        int pixelHeight = height + kernelHeight - kernel.dimension / 2;
-                        if(pixelWidth >= 0 && pixelWidth < image.width && pixelHeight >= 0 && pixelHeight < image.height){
-                            sum += image.rgb_image[(pixelHeight * image.width * image.channels) + (pixelWidth * image.channels) + channel] * kernel.data[kernelWidth][kernelHeight];
+                for (int kernel_width = 0; kernel_width < kernel.dimension; ++kernel_width) {
+                    for (int kernel_height = 0; kernel_height < kernel.dimension; ++kernel_height) {
+                        int x = image_width + kernel_width - kernel.dimension / 2;
+                        int y = image_height + kernel_height - kernel.dimension / 2;
+                        if (x >= 0 && x < image.width && y >= 0 && y < image.height) {
+                            sum += image.rgb_image[(y * image.width * image.channels) + (x * image.channels) + channels] * kernel.data[kernel_width][kernel_height];
                         }
                     }
                 }
                 sum /= kernel.normalizing_constant;
-                convolved.rgb_image[(height * convolved.width * convolved.channels) + (width * convolved.channels) + channel] = static_cast<uint8_t>(sum);
+                convolved.rgb_image[(image_height * convolved.width * convolved.channels) + (image_width * convolved.channels) + channels] = static_cast<uint8_t>(sum);
             }
         }
     }
 
     return convolved;
 }
+
+
+
+
